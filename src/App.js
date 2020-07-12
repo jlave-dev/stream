@@ -1,28 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import './App.scss';
 
 function App() {
+  const [currentWord, setCurrentWord] = useState('');
+  const [fullText, setFullText] = useState('');
+
+  function handleChange(event) {
+    const word = event.target.value;
+    const lastCharacter = word.slice(-1);
+    if (/\s/.test(lastCharacter)) {
+      setFullText(`${fullText}${word}`);
+      setCurrentWord('');
+    } else {
+      setCurrentWord(word);
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="App">
+      <section className="section">
+        <div className="container has-text-centered">
+          <input type="text" className="input" value={currentWord} onChange={handleChange} />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container has-text-centered">
+          <p className="content">
+            {fullText}
+          </p>
+        </div>
+      </section>
     </div>
   );
 }
