@@ -28,6 +28,8 @@ module.exports = {
     'react',
   ],
   rules: {
+    'react/jsx-max-props-per-line': [1, { when: 'multiline' }],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'import/no-extraneous-dependencies': 0,
   },
 };
