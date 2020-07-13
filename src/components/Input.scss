@@ -1,0 +1,14 @@
+.input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-width: 2px;
+
+  &.is-large {
+    font-size: 3rem;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}
