@@ -2,47 +2,49 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropType from 'prop-types';
 import './Input.scss';
 
-const Input = ({ onWordFinished }) => {
+const Input = ({ onTextComplete }) => {
   const inputEl = useRef(null);
-  const [currentWord, setCurrentWord] = useState('');
+  const [currentText, setCurrentText] = useState('');
 
   useEffect(() => {
     inputEl.current.focus();
   });
 
   function handleChange(event) {
-    const word = event.target.value;
-    const lastCharacter = word.slice(-1);
+    const text = event.target.value;
+    const lastCharacter = text.slice(-1);
     if (/\s/.test(lastCharacter)) {
-      onWordFinished(word);
-      setCurrentWord('');
+      onTextComplete(text);
+      setCurrentText('');
     } else {
-      setCurrentWord(word);
+      setCurrentText(text);
     }
   }
 
   function handleKeyUp(event) {
     if (event.key === 'Enter') {
-      const word = event.target.value;
-      onWordFinished(`${word}\n`);
-      setCurrentWord('');
+      const text = event.target.value;
+      onTextComplete(`${text}\n`);
+      setCurrentText('');
     }
   }
 
   return (
-    <input
-      ref={inputEl}
-      type="text"
-      className="input is-large"
-      value={currentWord}
-      onChange={handleChange}
-      onKeyUp={handleKeyUp}
-    />
+    <div>
+      <input
+        ref={inputEl}
+        type="text"
+        className="input is-large"
+        value={currentText}
+        onChange={handleChange}
+        onKeyUp={handleKeyUp}
+      />
+    </div>
   );
 };
 
 Input.propTypes = {
-  onWordFinished: PropType.func.isRequired,
+  onTextComplete: PropType.func.isRequired,
 };
 
 export default Input;

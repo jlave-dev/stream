@@ -15,7 +15,7 @@ const App = () => {
       <main>
         <section className="section">
           <div className="container has-text-centered">
-            <Input onWordFinished={(word) => setFullText(`${fullText}${word}`)} />
+            <Input onTextComplete={(text) => setFullText(`${fullText}${text}`)} />
           </div>
         </section>
 

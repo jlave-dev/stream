@@ -6,4 +6,4 @@ export default {
   title: 'Input',
 };
 
-export const text = () => <Input onWordFinished={action('wordFinished')} />;
+export const text = () => <Input onTextComplete={action('textComplete')} />;
