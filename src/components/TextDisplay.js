@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { string } from 'prop-types';
 import './TextDisplay.scss';
 
 const TextDisplay = ({ text }) => {
@@ -29,7 +29,7 @@ const TextDisplay = ({ text }) => {
 };
 
 TextDisplay.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: string.isRequired,
 };
 
 export default TextDisplay;

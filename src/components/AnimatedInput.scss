@@ -1,0 +1,12 @@
+.AnimatedInput {
+  position: 'relative';
+
+  .AnimatedText {
+    position: absolute;
+    top: calc(0.5em - 1px);
+    right: 0;
+    left: 0;
+    margin: auto;
+    font-size: 3rem;
+  }
+}

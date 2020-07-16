@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.scss';
-import Input from './components/Input';
 import TextDisplay from './components/TextDisplay';
+import AnimatedInput from './components/AnimatedInput';
 
 const App = () => {
   const [fullText, setFullText] = useState('');
@@ -13,7 +13,7 @@ const App = () => {
       <main>
         <section className="section">
           <div className="container has-text-centered">
-            <Input
+            <AnimatedInput
               onTextComplete={(text) => setFullText(`${fullText}${text}`)}
             />
           </div>

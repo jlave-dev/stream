@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import PropType from 'prop-types';
+import { func } from 'prop-types';
 import './Input.scss';
 
 const Input = ({ onTextComplete }) => {
-  const inputEl = useRef(null);
+  const htmlInput = useRef(null);
   const [currentText, setCurrentText] = useState('');
 
   useEffect(() => {
-    inputEl.current.focus();
+    htmlInput.current.focus();
   });
 
   function handleChange(event) {
@@ -30,21 +30,19 @@ const Input = ({ onTextComplete }) => {
   }
 
   return (
-    <div>
-      <input
-        ref={inputEl}
-        type="text"
-        className="input is-large"
-        value={currentText}
-        onChange={handleChange}
-        onKeyUp={handleKeyUp}
-      />
-    </div>
+    <input
+      ref={htmlInput}
+      type="text"
+      className="input is-large"
+      value={currentText}
+      onChange={handleChange}
+      onKeyUp={handleKeyUp}
+    />
   );
 };
 
 Input.propTypes = {
-  onTextComplete: PropType.func.isRequired,
+  onTextComplete: func.isRequired,
 };
 
 export default Input;

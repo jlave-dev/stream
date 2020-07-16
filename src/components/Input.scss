@@ -1,8 +1,9 @@
 .input {
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  text-align: center;
+  border-top: 0;
+  border-right: 0;
   border-bottom-width: 2px;
+  border-left: 0;
 
   &.is-large {
     font-size: 3rem;

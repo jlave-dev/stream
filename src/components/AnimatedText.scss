@@ -1,0 +1,22 @@
+.AnimatedText {
+  animation-name: fadeOutDown;
+  animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+
+  @keyframes fadeOutDown {
+    from {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      filter: blur(0);
+    }
+
+    90% {
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(250px) scale(0.2);
+      opacity: 0;
+      filter: blur(10px);
+    }
+  }
+}
