@@ -8,14 +8,14 @@ const App = () => {
 
   return (
     <>
-      <aside>
-        Aside
-      </aside>
+      <aside>Aside</aside>
 
       <main>
         <section className="section">
           <div className="container has-text-centered">
-            <Input onTextComplete={(text) => setFullText(`${fullText}${text}`)} />
+            <Input
+              onTextComplete={(text) => setFullText(`${fullText}${text}`)}
+            />
           </div>
         </section>
 

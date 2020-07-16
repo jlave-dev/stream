@@ -10,15 +10,19 @@ const TextDisplay = ({ text }) => {
       <button
         className="button"
         type="button"
-        onClick={() => { setIsBlurred(!isBlurred); }}
+        onClick={() => {
+          setIsBlurred(!isBlurred);
+        }}
       >
-        {isBlurred ? 'Show' : 'Hide'}
-        {' '}
-        text
+        {isBlurred ? 'Show' : 'Hide'} text
       </button>
 
       <div className={isBlurred ? 'is-blurred' : ''}>
-        {text.split('\n').map((line) => <p key={line} className="has-text-centered">{line}</p>)}
+        {text.split('\n').map((line) => (
+          <p key={line} className="has-text-centered">
+            {line}
+          </p>
+        ))}
       </div>
     </div>
   );
