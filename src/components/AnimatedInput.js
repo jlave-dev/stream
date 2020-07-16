@@ -7,10 +7,14 @@ import Input from './Input';
 const ANIMATION_DURATION = 1000; // ms
 
 const AnimatedInput = ({ onTextComplete }) => {
+  // Store AnimatedText components in an object for easy adding/removing
   const [animatedTextMap, setAnimatedTextMap] = useState({});
 
   function spawnAnimatedText(text) {
+    // Pass the completed text upward for further processing
     onTextComplete(text);
+
+    // Create a new AnimatedText for this text and add it to the map
     const animationDurationString = `${ANIMATION_DURATION / 1000}s`;
     const newAnimatedTextKey = `${Date.now().toString()}_${text}`;
     const newAnimatedText = (
@@ -24,11 +28,14 @@ const AnimatedInput = ({ onTextComplete }) => {
       ...previousMap,
       ...{ [newAnimatedTextKey]: newAnimatedText },
     }));
-    setTimeout(() => {
+
+    // When animation is over, remove AnimatedText from the map (stop rendering it)
+    const timeout = setTimeout(() => {
       setAnimatedTextMap((previousMap) => ({
         ...previousMap,
         ...{ [newAnimatedTextKey]: null },
       }));
+      clearTimeout(timeout);
     }, ANIMATION_DURATION);
   }
 
