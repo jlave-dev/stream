@@ -26,15 +26,16 @@ const AnimatedInput = ({ onTextComplete }) => {
     );
     setAnimatedTextMap((previousMap) => ({
       ...previousMap,
-      ...{ [newAnimatedTextKey]: newAnimatedText },
+      [newAnimatedTextKey]: newAnimatedText,
     }));
 
     // When animation is over, remove AnimatedText from the map (stop rendering it)
     const timeout = setTimeout(() => {
-      setAnimatedTextMap((previousMap) => ({
-        ...previousMap,
-        ...{ [newAnimatedTextKey]: null },
-      }));
+      setAnimatedTextMap((previousMap) => {
+        const previousMapCopy = { ...previousMap };
+        delete previousMapCopy[newAnimatedTextKey];
+        return previousMapCopy;
+      });
       clearTimeout(timeout);
     }, ANIMATION_DURATION);
   }
