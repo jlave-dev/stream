@@ -26,7 +26,10 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.7",
     "node-sass": "^4.14.1",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "stylelint": "^13.6.1",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-order": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
