@@ -1,1 +1,5 @@
 @import './bulma';
+
+.box:not(:last-child) {
+  margin-bottom: 0rem;
+}
