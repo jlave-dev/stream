@@ -1,0 +1,10 @@
+@import '../bulma.scss';
+
+.DocumentLink {
+  cursor: default;
+  transition: all 100ms ease-out;
+
+  &:hover {
+    background-color: $white-bis;
+  }
+}

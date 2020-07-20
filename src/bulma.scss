@@ -4,3 +4,7 @@ $input-focus-border-color: #aaa;
 $box-radius: 0;
 
 @import '~bulma';
+
+.box:not(:last-child) {
+  margin-bottom: 0rem;
+}

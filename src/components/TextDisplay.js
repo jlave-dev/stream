@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { string, func } from 'prop-types';
 import './TextDisplay.scss';
 
-const TextDisplay = ({ onClear, text }) => {
+const TextDisplay = ({ onClear, onClickSave, text }) => {
   const [isBlurred, setIsBlurred] = useState(true);
 
-  function handleClear() {
+  function onClickClear() {
     // eslint-disable-next-line no-alert
     if (window.confirm('Are you sure you want to clear the text?')) {
       onClear();
@@ -36,7 +36,7 @@ const TextDisplay = ({ onClear, text }) => {
                 className="button is-white"
                 type="button"
                 title="Save text"
-                onClick={() => {}}
+                onClick={onClickSave}
               >
                 <span className="icon">
                   <i className="fas fa-save" />
@@ -51,7 +51,7 @@ const TextDisplay = ({ onClear, text }) => {
                 className="button is-white"
                 type="button"
                 title="Clear text"
-                onClick={handleClear}
+                onClick={onClickClear}
               >
                 <span className="icon">
                   <i className="fas fa-trash" />
@@ -75,6 +75,7 @@ const TextDisplay = ({ onClear, text }) => {
 
 TextDisplay.propTypes = {
   onClear: func.isRequired,
+  onClickSave: func.isRequired,
   text: string.isRequired,
 };
 
