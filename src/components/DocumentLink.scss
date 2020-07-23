@@ -1,10 +1,27 @@
 @import '../bulma.scss';
 
+@mixin is-selected {
+  background-color: #ffff;
+  box-shadow: 0 0.2rem 0.5rem #6666;
+}
+
 .DocumentLink {
+  padding: 2rem;
+  background-color: #fffa;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.1rem #6666;
   cursor: default;
   transition: all 100ms ease-out;
 
   &:hover {
-    background-color: $white-bis;
+    @include is-selected;
+  }
+
+  &.is-active {
+    @include is-selected;
+  }
+
+  &:not(:last-child) {
+    margin-right: 1rem;
   }
 }

@@ -1,10 +1,24 @@
+$red: #ec008c;
+
 $input-radius: 0;
 $input-shadow: none;
 $input-focus-border-color: #aaa;
 $box-radius: 0;
 
+@import '~bulma/sass/utilities/_all';
+
+$family-primary: join('Mulish', $family-sans-serif);
+
 @import '~bulma';
 
 .box:not(:last-child) {
   margin-bottom: 0rem;
+}
+
+.button .icon,
+.button .icon.is-small,
+.button .icon.is-medium,
+.button .icon.is-large {
+  width: 0.5em;
+  height: 0.5em;
 }

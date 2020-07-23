@@ -3,7 +3,7 @@ import { string, number, shape, func } from 'prop-types';
 import AnimatedInput from './AnimatedInput';
 import TextDisplay from './TextDisplay';
 
-const TextEditor = ({ activeDocument, onClear, onSave }) => {
+const TextEditor = ({ activeDocument, onDelete, onSave }) => {
   const [fullText, setFullText] = useState('');
 
   useEffect(() => {
@@ -27,8 +27,8 @@ const TextEditor = ({ activeDocument, onClear, onSave }) => {
           <div className="container">
             <TextDisplay
               text={fullText || ''}
-              onClear={onClear}
-              onClickSave={() => onSave(fullText)}
+              onDelete={onDelete}
+              onSave={() => onSave(fullText)}
             />
           </div>
         </section>
@@ -43,7 +43,7 @@ TextEditor.propTypes = {
     time: number.isRequired,
     text: string.isRequired,
   }),
-  onClear: func.isRequired,
+  onDelete: func.isRequired,
   onSave: func.isRequired,
 };
 

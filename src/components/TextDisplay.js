@@ -2,24 +2,27 @@ import React, { useState } from 'react';
 import { string, func } from 'prop-types';
 import './TextDisplay.scss';
 
-const TextDisplay = ({ onClear, onClickSave, text }) => {
+const TextDisplay = ({ onDelete, onSave, text }) => {
   const [isBlurred, setIsBlurred] = useState(true);
 
-  function onClickClear() {
-    // eslint-disable-next-line no-alert
-    if (window.confirm('Are you sure you want to clear the text?')) {
-      onClear();
+  function onClickDelete() {
+    if (
+      window.confirm(
+        'Are you sure you want to delete the text? This is irreversible!'
+      )
+    ) {
+      onDelete();
     }
   }
 
   return (
     <div className="TextDisplay content">
-      {text && (
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
+      <div className="level">
+        <div className="level-left">
+          <div className="field is-grouped">
+            <p className="control">
               <button
-                className="button is-white"
+                className="button is-medium is-rounded is-white"
                 type="button"
                 title="Toggle text visibility"
                 onClick={() => {
@@ -28,39 +31,39 @@ const TextDisplay = ({ onClear, onClickSave, text }) => {
               >
                 <span className="icon">
                   <i
-                    className={`fas ${isBlurred ? 'fa-eye-slash' : 'fa-eye'}`}
+                    className={`far ${isBlurred ? 'fa-eye-slash' : 'fa-eye'}`}
                   />
                 </span>
               </button>
+            </p>
+            <p className="control">
               <button
-                className="button is-white"
+                className="button is-medium is-rounded is-white"
                 type="button"
                 title="Save text"
-                onClick={onClickSave}
+                onClick={onSave}
               >
                 <span className="icon">
-                  <i className="fas fa-save" />
+                  <i className="far fa-save" />
                 </span>
               </button>
-            </div>
-          </div>
-
-          <div className="level-right">
-            <div className="level-item">
-              <button
-                className="button is-white"
-                type="button"
-                title="Clear text"
-                onClick={onClickClear}
-              >
-                <span className="icon">
-                  <i className="fas fa-trash" />
-                </span>
-              </button>
-            </div>
+            </p>
           </div>
         </div>
-      )}
+
+        <div className="level-right">
+          <button
+            className="button is-medium is-rounded is-danger is-inverted"
+            type="button"
+            title="Delete document"
+            onClick={onClickDelete}
+          >
+            <span className="icon">
+              <i className="far fa-trash-alt" />
+            </span>
+          </button>
+        </div>
+      </div>
 
       <div className={isBlurred ? 'is-blurred' : ''}>
         {text.split('\n').map((line) => (
@@ -74,8 +77,8 @@ const TextDisplay = ({ onClear, onClickSave, text }) => {
 };
 
 TextDisplay.propTypes = {
-  onClear: func.isRequired,
-  onClickSave: func.isRequired,
+  onSave: func.isRequired,
+  onDelete: func.isRequired,
   text: string.isRequired,
 };
 

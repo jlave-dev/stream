@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './AnimatedInput.scss';
 import { func } from 'prop-types';
 import AnimatedText from './AnimatedText';
 import Input from './Input';
+import './AnimatedInput.scss';
 
 const ANIMATION_DURATION = 1000; // ms
 

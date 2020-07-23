@@ -1,15 +1,24 @@
-.input {
+input.input {
   text-align: center;
+  background-color: #fff0;
+  border-color: #fffa;
   border-top: 0;
   border-right: 0;
-  border-bottom-width: 2px;
+  border-bottom-width: thin;
   border-left: 0;
+  transition: all 100ms ease-in-out;
 
   &.is-large {
     font-size: 3rem;
   }
 
+  &:hover {
+    border-color: #fff;
+  }
+
   &:focus {
+    border-color: #fff;
+    border-bottom-width: 2px;
     box-shadow: none;
   }
 }

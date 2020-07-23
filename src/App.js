@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './App.scss';
 import DocumentLinkList from './components/DocumentLinkList';
 import TextEditor from './components/TextEditor';
 import { getSavedDocuments, setSavedDocuments } from './lib/storage';
+import './App.scss';
 
-function createDocument(text) {
+function createDocument(text = '') {
   return {
     title: '',
     time: Date.now(),
@@ -30,6 +30,15 @@ const App = () => {
     setSavedDocuments(documents);
   }, [documents]);
 
+  function onDelete() {
+    setDocuments((previousDocuments) => {
+      const previousDocumentsCopy = { ...previousDocuments };
+      delete previousDocumentsCopy[activeDocument.time.toString()];
+      return previousDocumentsCopy;
+    });
+    // setActiveDocument(documents[documents.length - 1]);
+  }
+
   function onSave(text) {
     if (!activeDocument) {
       const document = createDocument(text);
@@ -47,6 +56,15 @@ const App = () => {
     }
   }
 
+  function onCreateDocument() {
+    const document = createDocument();
+    setDocuments((previousDocuments) => ({
+      ...previousDocuments,
+      [document.time.toString()]: document,
+    }));
+    setActiveDocument(document);
+  }
+
   function onSelectDocument(id) {
     let documentToActivate = null;
     if (id) {
@@ -55,29 +73,27 @@ const App = () => {
     setActiveDocument(documentToActivate);
   }
 
-  function onClear() {
-    onSelectDocument(null);
-  }
-
   return (
-    <div style={{ display: 'flex' }}>
-      <aside>
-        <DocumentLinkList
-          documents={documents}
-          onSelectDocument={onSelectDocument}
-        />
-      </aside>
-
+    <div>
       <main
         className="container"
         style={{ display: 'flex', justifyContent: 'center' }}
       >
         <TextEditor
           activeDocument={activeDocument}
-          onClear={onClear}
+          onDelete={onDelete}
           onSave={onSave}
         />
       </main>
+
+      <nav style={{ position: 'absolute', bottom: 0, left: 0, width: '100%' }}>
+        <DocumentLinkList
+          activeDocument={activeDocument}
+          documents={documents}
+          onCreateDocument={onCreateDocument}
+          onSelectDocument={onSelectDocument}
+        />
+      </nav>
     </div>
   );
 };
