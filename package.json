@@ -39,7 +39,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "name": "text-editor",
+  "name": "stream",
   "private": true,
   "scripts": {
     "build": "react-scripts build",

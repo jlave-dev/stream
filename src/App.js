@@ -101,7 +101,7 @@ const App = () => {
           <div className="navbar-start">
             <a
               className="button is-medium is-rounded"
-              href="https://github.com/jlave-dev/text-editor"
+              href="https://github.com/jlave-dev/stream"
               target="_blank"
               rel="noopener noreferrer"
               title="View on GitHub"
