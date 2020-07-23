@@ -83,7 +83,35 @@ const App = () => {
   }
 
   return (
-    <div>
+    <>
+      <nav
+        className="navbar is-transparent"
+        style={{
+          padding: '1rem',
+          position: 'absolute',
+          width: '100vw',
+          backgroundColor: '#fff0',
+        }}
+      >
+        <div className="navbar-menu">
+          <div className="navbar-start">
+            <a
+              className="button is-medium is-rounded"
+              href="https://github.com/jlave-dev/text-editor"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="View on GitHub"
+            >
+              <span className="icon">
+                <i className="fab fa-github" />
+              </span>
+            </a>
+          </div>
+
+          <div className="navbar-end" />
+        </div>
+      </nav>
+
       <main
         className="container"
         style={{ display: 'flex', justifyContent: 'center' }}
@@ -103,7 +131,7 @@ const App = () => {
           onSelectDocument={onSelectDocument}
         />
       </nav>
-    </div>
+    </>
   );
 };
 
