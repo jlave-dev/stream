@@ -22,6 +22,8 @@ const App = () => {
     setDocuments(savedDocuments);
     if (savedDocuments.length > 0) {
       setActiveDocument(savedDocuments[0]);
+    } else {
+      setActiveDocument(createDocument());
     }
   }, []);
 
@@ -32,19 +34,21 @@ const App = () => {
 
   function onDelete() {
     setDocuments((previousDocuments) => {
-      const previousDocumentsCopy = [...previousDocuments];
-      const deleteIndex = previousDocumentsCopy.findIndex(
+      const documentsCopy = [...previousDocuments];
+      const deleteIndex = documentsCopy.findIndex(
         (doc) => `${doc.time}` === `${activeDocument.time}`
       );
-      previousDocumentsCopy.splice(deleteIndex, 1);
-      if (deleteIndex >= previousDocumentsCopy.length) {
-        setActiveDocument(
-          previousDocumentsCopy[previousDocumentsCopy.length - 1]
-        );
+      documentsCopy.splice(deleteIndex, 1);
+      if (documentsCopy.length > 0) {
+        if (deleteIndex >= documentsCopy.length) {
+          setActiveDocument(documentsCopy[documentsCopy.length - 1]);
+        } else {
+          setActiveDocument(documentsCopy[deleteIndex]);
+        }
       } else {
-        setActiveDocument(previousDocumentsCopy[deleteIndex]);
+        setActiveDocument(createDocument());
       }
-      return previousDocumentsCopy;
+      return documentsCopy;
     });
   }
 
