@@ -65,7 +65,10 @@ const TextDisplay = ({ onDelete, onSave, text }) => {
         </div>
       </div>
 
-      <div className={isBlurred ? 'is-blurred' : ''}>
+      <div className={isBlurred && text ? 'is-blurred' : ''}>
+        {!text && (
+          <p className="has-text-grey is-italic">Start typing above.</p>
+        )}
         {text.split('\n').map((line) => (
           <p key={line} style={{ textAlign: 'start' }}>
             {line}
