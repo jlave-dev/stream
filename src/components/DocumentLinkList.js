@@ -12,14 +12,19 @@ const DocumentLinkList = ({
   return (
     <div className="DocumentLinkList">
       <div
-        className="DocumentLink"
+        className="create-button"
         role="none"
         onClick={onCreateDocument}
         title="Create new"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
       >
         <h1 className="title is-3">
           <span className="icon">
-            <i className="far fa-plus-square" />
+            <i className="fas fa-plus" />
           </span>
         </h1>
       </div>

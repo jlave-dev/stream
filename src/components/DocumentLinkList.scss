@@ -1,5 +1,11 @@
+@import '../scss/mixins';
+
 .DocumentLinkList {
   display: flex;
   padding: 1rem;
   overflow-x: scroll;
+
+  .create-button {
+    @include selectable-box;
+  }
 }

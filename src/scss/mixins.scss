@@ -1,0 +1,24 @@
+@mixin selectable-box {
+  padding: 2rem;
+  background-color: #fffa;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.1rem #6666;
+  transition: all 100ms ease-out;
+
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+  &:hover {
+    @include is-selected;
+  }
+
+  &.is-active {
+    @include is-selected;
+  }
+}
+
+@mixin is-selected {
+  background-color: #ffff;
+  box-shadow: 0 0.2rem 0.5rem #6666;
+}

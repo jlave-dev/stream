@@ -1,14 +1,7 @@
-.TextDisplay {
-  padding: 2rem;
-  background-color: #fffa;
-  border-radius: 1rem;
-  box-shadow: 0 0 0.1rem #6666;
-  transition: all 100ms ease-out;
+@import '../scss/mixins';
 
-  &:hover {
-    background-color: #ffff;
-    box-shadow: 0 0.2rem 0.5rem #6666;
-  }
+.TextDisplay {
+  @include selectable-box;
 }
 
 p {
