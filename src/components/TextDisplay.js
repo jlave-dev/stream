@@ -22,7 +22,7 @@ const TextDisplay = ({ onDelete, onSave, text }) => {
           <div className="field is-grouped">
             <p className="control">
               <button
-                className="button is-medium is-rounded is-white"
+                className="button is-medium is-rounded is-info is-inverted"
                 type="button"
                 title="Toggle text visibility"
                 onClick={() => {
@@ -38,7 +38,7 @@ const TextDisplay = ({ onDelete, onSave, text }) => {
             </p>
             <p className="control">
               <button
-                className="button is-medium is-rounded is-white"
+                className="button is-medium is-rounded is-success is-inverted"
                 type="button"
                 title="Save text"
                 onClick={onSave}
