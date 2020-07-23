@@ -13,15 +13,15 @@ function createDocument(text = '') {
 }
 
 const App = () => {
-  const [documents, setDocuments] = useState({});
+  const [documents, setDocuments] = useState([]);
   const [activeDocument, setActiveDocument] = useState(null);
 
   // Get saved documents on app mount
   useEffect(() => {
     const savedDocuments = getSavedDocuments();
     setDocuments(savedDocuments);
-    if (Object.values(savedDocuments).length > 0) {
-      setActiveDocument(Object.values(savedDocuments)[0]);
+    if (savedDocuments.length > 0) {
+      setActiveDocument(savedDocuments[0]);
     }
   }, []);
 
@@ -32,43 +32,52 @@ const App = () => {
 
   function onDelete() {
     setDocuments((previousDocuments) => {
-      const previousDocumentsCopy = { ...previousDocuments };
-      delete previousDocumentsCopy[activeDocument.time.toString()];
+      const previousDocumentsCopy = [...previousDocuments];
+      const deleteIndex = previousDocumentsCopy.findIndex(
+        (doc) => `${doc.time}` === `${activeDocument.time}`
+      );
+      previousDocumentsCopy.splice(deleteIndex, 1);
+      if (deleteIndex >= previousDocumentsCopy.length) {
+        setActiveDocument(
+          previousDocumentsCopy[previousDocumentsCopy.length - 1]
+        );
+      } else {
+        setActiveDocument(previousDocumentsCopy[deleteIndex]);
+      }
       return previousDocumentsCopy;
     });
-    // setActiveDocument(documents[documents.length - 1]);
   }
 
   function onSave(text) {
     if (!activeDocument) {
       const document = createDocument(text);
-      setDocuments((previousDocuments) => ({
-        ...previousDocuments,
-        [document.time.toString()]: document,
-      }));
+      setDocuments((previousDocuments) => [...previousDocuments, document]);
       setActiveDocument(document);
     } else {
       activeDocument.text = text;
-      setDocuments((previousDocuments) => ({
-        ...previousDocuments,
-        [activeDocument.time.toString()]: activeDocument,
-      }));
+      setDocuments((previousDocuments) => {
+        const previousDocumentsCopy = [...previousDocuments];
+        const activeDocumentIndex = previousDocumentsCopy.findIndex(
+          (doc) => doc.time.toString() === activeDocument.time.toString()
+        );
+        previousDocumentsCopy.splice(activeDocumentIndex, 1, activeDocument);
+        return previousDocumentsCopy;
+      });
     }
   }
 
   function onCreateDocument() {
     const document = createDocument();
-    setDocuments((previousDocuments) => ({
-      ...previousDocuments,
-      [document.time.toString()]: document,
-    }));
+    setDocuments((previousDocuments) => [...previousDocuments, document]);
     setActiveDocument(document);
   }
 
   function onSelectDocument(id) {
     let documentToActivate = null;
     if (id) {
-      documentToActivate = documents[id];
+      documentToActivate = documents.find(
+        (document) => document.time.toString() === id
+      );
     }
     setActiveDocument(documentToActivate);
   }

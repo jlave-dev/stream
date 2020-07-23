@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, number, shape, objectOf, func } from 'prop-types';
+import { string, number, shape, func, arrayOf } from 'prop-types';
 import DocumentLink from './DocumentLink';
 import './DocumentLinkList.scss';
 
@@ -28,14 +28,17 @@ const DocumentLinkList = ({
           </span>
         </h1>
       </div>
-      {Object.entries(documents).map(([id, document]) => (
-        <DocumentLink
-          isActive={id === activeDocument.time.toString()}
-          document={document}
-          key={id}
-          onClick={() => onSelectDocument(id)}
-        />
-      ))}
+      {documents.map((document) => {
+        const id = document.time.toString();
+        return (
+          <DocumentLink
+            isActive={id === activeDocument.time.toString()}
+            document={document}
+            key={id}
+            onClick={() => onSelectDocument(id)}
+          />
+        );
+      })}
     </div>
   );
 };
@@ -46,7 +49,7 @@ DocumentLinkList.propTypes = {
     time: number.isRequired,
     text: string.isRequired,
   }),
-  documents: objectOf(
+  documents: arrayOf(
     shape({
       title: string,
       time: number.isRequired,
