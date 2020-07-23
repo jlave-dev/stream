@@ -1,5 +1,5 @@
 export function getSavedDocuments() {
-  const documents = localStorage.getItem('documents') || '{}';
+  const documents = localStorage.getItem('documents') || '[]';
   return JSON.parse(documents);
 }
 
